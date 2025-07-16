@@ -455,6 +455,8 @@ void old_fts_release_all_finger(void)
 		input_sync(input_dev);
 	}
 
+	ts_data->hover_event = !ts_data->hover_event;
+
 	if (ts_data->pdata->input_dev_proximity) {
 		ts_data->pocket_state = ts_data->hover_event = 0xff;
 		input_report_abs(ts_data->pdata->input_dev_proximity, ABS_MT_CUSTOM, ts_data->hover_event);
@@ -815,6 +817,8 @@ static int fts_read_pocket_result(struct fts_ts_data *ts_data)
 		FTS_INFO("pocket status in");
 		ts_data->hover_event = IN_POCKET;
 	}
+	
+	ts_data->hover_event = !ts_data->hover_event;
 
 	if (!ts_data->legacy_mode)
 		sec_input_proximity_report(ts_data->dev, ts_data->hover_event);
@@ -842,6 +846,8 @@ static int fts_read_proximity_result(struct fts_ts_data *ts_data)
 		return 0;
 	else
 		ts_data->hover_event = (val >> 4);
+
+	ts_data->hover_event = !ts_data->hover_event;
 
 	if (!ts_data->legacy_mode)
 		sec_input_proximity_report(ts_data->dev, ts_data->hover_event);
