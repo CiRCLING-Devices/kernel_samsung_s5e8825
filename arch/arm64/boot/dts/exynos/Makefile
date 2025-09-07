@@ -29,6 +29,10 @@ dtbo-y += samsung/a53x/a53x_eur_open_w00_r02.dtbo
 dtbo-y += samsung/a53x/a53x_eur_open_w00_r05.dtbo
 dtbo-y += samsung/a53x/a53x_eur_open_w00_r06.dtbo
 
+dtbo-y += samsung/a53x/a53x_jpn_dcm_w00_r00.dtbo
+dtbo-y += samsung/a53x/a53x_jpn_dcm_w00_r01.dtbo
+dtbo-y += samsung/a53x/a53x_jpn_dcm_w00_r02.dtbo
+
 dtbo-y += samsung/gta4xls/gta4xls_eur_open_w00_r00.dtbo
 dtbo-y += samsung/gta4xls/gta4xls_eur_open_w00_r02.dtbo
 dtbo-y += samsung/gta4xls/gta4xls_eur_open_w00_r03.dtbo
