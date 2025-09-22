@@ -347,7 +347,7 @@ build() {
 
     rm -rf "$MOD_OUTDIR" 2>/dev/null
 
-    make -j$(nproc --all) O=out CC="clang" CROSS_COMPILE="$CCARM64_PREFIX" $DEFCONFIG 2>&1 | tee log.txt
+    make -j$(nproc --all) O=out CC="clang" $DEFCONFIG 2>&1 | tee log.txt
 
     # Delete leftovers
     rm -f $OUT_KERNEL
@@ -365,13 +365,13 @@ build() {
     ## Start the build
     echo -e "\nINFO: Starting compilation...\n"
 
-    make -j$(nproc --all) O=out CC="clang" CROSS_COMPILE="$CCARM64_PREFIX" dtbs 2>&1 | tee log.txt
+    make -j$(nproc --all) O=out CC="clang" dtbs 2>&1 | tee log.txt
     if [ $USE_CCACHE = "1" ]; then
-        make -j$(nproc --all) O=out CC="ccache clang" CROSS_COMPILE="$CCARM64_PREFIX" 2>&1 | tee log.txt
+        make -j$(nproc --all) O=out CC="ccache clang" 2>&1 | tee log.txt
     else
-        make -j$(nproc --all) O=out CC="clang" CROSS_COMPILE="$CCARM64_PREFIX" 2>&1 | tee log.txt
+        make -j$(nproc --all) O=out CC="clang" 2>&1 | tee log.txt
     fi
-    make -j$(nproc --all) O=out CC="clang" CROSS_COMPILE="$CCARM64_PREFIX" INSTALL_MOD_STRIP="--strip-debug --keep-section=.ARM.attributes" INSTALL_MOD_PATH="$MOD_OUTDIR" modules_install 2>&1 | tee log.txt
+    make -j$(nproc --all) O=out CC="clang" INSTALL_MOD_STRIP="--strip-debug --keep-section=.ARM.attributes" INSTALL_MOD_PATH="$MOD_OUTDIR" modules_install 2>&1 | tee log.txt
 }
 
 packing() {
