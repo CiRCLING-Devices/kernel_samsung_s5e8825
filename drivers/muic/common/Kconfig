@@ -75,13 +75,6 @@ config USE_DEDICATED_MUIC
 	  Dedicated MUIC device driver.
 	  This is only for charge
 
-config MUIC_AFC_RETRY
-	bool "Using MUIC AFC retry"
-	depends on USE_MUIC
-	default n
-	help
-	  If you say yes here you will get support for MUIC AFC retry feature.
-
 config MUIC_COMMON_SYSFS
 	bool "Using muic sysfs Features"
 	depends on MUIC_NOTIFIER
