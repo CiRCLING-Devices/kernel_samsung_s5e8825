@@ -1481,13 +1481,9 @@ static int st21nfc_probe(struct i2c_client *client,
 
 	client->irq = gpiod_to_irq(st21nfc_dev->gpiod_irq);
 
-	/* I2C retry management: we want only 1 attempt at communication.
-	 * As some busses need retry=1 and most need retry=0, we add optional DTS entry
-	 */
-	if (of_property_read_u32(dev->of_node, "i2c-retry", &client->adapter->retries))
-		client->adapter->retries = 0;
-	else
-		NFC_LOG_INFO("i2c-retry = %d\n", client->adapter->retries);
+	/* I2C retry management: prefer a few retries to ride out marginal bus behavior. */
+	client->adapter->retries = 3;
+	NFC_LOG_INFO("i2c-retry = %d\n", client->adapter->retries);
 
 	client->adapter->retries = 3;
 	NFC_LOG_INFO("i2c-retry overridden = %d\n", client->adapter->retries);
